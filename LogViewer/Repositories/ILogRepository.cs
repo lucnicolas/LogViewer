@@ -7,5 +7,5 @@ public interface ILogRepository
     List<Log> Logs { get; set; }
     List<Log> InitializeData();
     List<Log> GetAll();
-    List<Log> GetAllFiltered(Filters filters);
+    List<Log> GetAllFilteredAndSorted(Filters filters, string sortOrder);
 }

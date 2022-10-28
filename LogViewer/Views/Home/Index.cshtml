@@ -7,20 +7,20 @@
 <div class="text-center">
     <form class="row g-3">
         <div class="col-auto">
-            <label for="Message" class="form-label">Content</label>
-            <input type="text" class="form-control" id="Message" name="Message" placeholder="Content">
+            <label for="Content" class="form-label">Content</label>
+            @Html.TextBox("Content", ViewBag.CurrentContentFilter as string, new { @class = "form-control", id = "Content" })
         </div>
         <div class="col-auto">
             <label for="Host" class="form-label">Host</label>
-            <input type="text" class="form-control" id="Host" name="Host" placeholder="Host">
+            @Html.TextBox("Host", ViewBag.CurrentHostFilter as string, new { @class = "form-control", id = "Host" })
         </div>
         <div class="col-auto">
             <label for="StartDate" class="form-label">Min. Date</label>
-            <input type="datetime-local" class="form-control" id="StartDate" name="StartDate">
+            @Html.TextBox("StartDate", ViewBag.CurrentMinFilter as string, new { @class = "form-control", id = "StartDate", type = "datetime-local" })
         </div>
         <div class="col-auto">
             <label for="EndDate" class="form-label">Max. Date</label>
-            <input type="datetime-local" class="form-control" id="EndDate" name="EndDate">
+            @Html.TextBox("EndDate", ViewBag.CurrentMaxFilter as string, new { @class = "form-control", id = "EndDate", type = "datetime-local" })
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Filter</button>
@@ -31,7 +31,9 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Date</th>
+            <th scope="col">
+                @Html.ActionLink("Date", "Index", new {sortOrder = ViewBag.DateSortParm})
+            </th>
             <th scope="col">Time</th>
             <th scope="col">Host</th>
             <th scope="col">Message</th>
@@ -45,7 +47,7 @@
                 <td>@item.TimeStamp.ToShortDateString()</td>
                 <td>@item.TimeStamp.ToLongTimeString()</td>
                 <td>@item.Host</td>
-                <td>@item.Message</td>
+                <td>@item.Content</td>
             </tr>
         }
         </tbody>

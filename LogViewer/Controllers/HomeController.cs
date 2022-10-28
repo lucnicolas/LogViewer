@@ -18,9 +18,10 @@ public class HomeController : Controller
     }
 
     [HttpGet]
-    public IActionResult Index(Filters filters)
+    public IActionResult Index(Filters filters, string sortOrder)
     {
-        return View(_logRepository.GetAllFiltered(filters));
+        ViewBag.DateSortParm = sortOrder == "date_asc" ? "date_desc" : "date_asc";
+        return View(_logRepository.GetAllFilteredAndSorted(filters, ViewBag.DateSortParm));
     }
 
     public IActionResult Privacy()
