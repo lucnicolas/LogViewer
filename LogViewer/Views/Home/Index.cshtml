@@ -1,4 +1,4 @@
-﻿@model List<LogViewer.Models.Log>
+﻿@model List<Log>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,12 +7,20 @@
 <div class="text-center">
     <form class="row g-3">
         <div class="col-auto">
-            <label for="startDate" class="visually-hidden">Min. Date</label>
-            <input type="datetime-local" class="form-control" id="startDate" name="startDate">
+            <label for="Message" class="form-label">Content</label>
+            <input type="text" class="form-control" id="Message" name="Message" placeholder="Content">
         </div>
         <div class="col-auto">
-            <label for="endDate" class="visually-hidden">Max. Date</label>
-            <input type="datetime-local" class="form-control" id="endDate" name="endDate">
+            <label for="Host" class="form-label">Host</label>
+            <input type="text" class="form-control" id="Host" name="Host" placeholder="Host">
+        </div>
+        <div class="col-auto">
+            <label for="StartDate" class="form-label">Min. Date</label>
+            <input type="datetime-local" class="form-control" id="StartDate" name="StartDate">
+        </div>
+        <div class="col-auto">
+            <label for="EndDate" class="form-label">Max. Date</label>
+            <input type="datetime-local" class="form-control" id="EndDate" name="EndDate">
         </div>
         <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Filter</button>

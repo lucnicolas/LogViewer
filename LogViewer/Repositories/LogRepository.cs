@@ -5,11 +5,11 @@ namespace LogViewer.Repositories;
 
 public class LogRepository : ILogRepository
 {
-    public List<Log> LogList { get; set; }
+    public List<Log> Logs { get; set; }
     
     public List<Log> InitializeData()
     {
-        LogList = new List<Log>()
+        Logs = new List<Log>()
         {
             new Log()
             {
@@ -28,21 +28,29 @@ public class LogRepository : ILogRepository
             },
 
         };
-        return LogList;
+        return Logs;
     }
 
     public List<Log> GetAll()
     {
-        return LogList;
+        return Logs;
     }
 
     public List<Log> GetAllFiltered(Filters filters)
     {
+        List<Log> filteredList = Logs;
         if (filters.StartDate != null && filters.EndDate != null)
         {
-            return LogList.Where(x => x.TimeStamp >= filters.StartDate && x.TimeStamp <= filters.EndDate).ToList();
+            filteredList = filteredList.Where(x => x.TimeStamp >= filters.StartDate && x.TimeStamp <= filters.EndDate).ToList();
         }
-
-        return LogList;
+        if (filters.Host != null)
+        {
+            filteredList = filteredList.Where(x => x.Host == filters.Host).ToList();
+        }
+        if (filters.Message != null)
+        {
+            filteredList = filteredList.Where(x => x.Message.Contains(filters.Message)).ToList();
+        }
+        return filteredList;
     }
 }
