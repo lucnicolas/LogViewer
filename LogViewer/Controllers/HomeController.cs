@@ -1,21 +1,25 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using LogViewer.Models;
+using LogViewer.Repositories;
 
 namespace LogViewer.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private ILogRepository _logRepository;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, ILogRepository logRepository)
     {
         _logger = logger;
+        _logRepository = logRepository;
+        _logRepository.InitializeData();
     }
 
     public IActionResult Index()
     {
-        return View();
+        return View(_logRepository.GetAll());
     }
 
     public IActionResult Privacy()
