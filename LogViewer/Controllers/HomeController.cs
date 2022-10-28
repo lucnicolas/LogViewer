@@ -17,9 +17,10 @@ public class HomeController : Controller
         _logRepository.InitializeData();
     }
 
-    public IActionResult Index()
+    [HttpGet]
+    public IActionResult Index(Filters filters)
     {
-        return View(_logRepository.GetAll());
+        return View(_logRepository.GetAllFiltered(filters));
     }
 
     public IActionResult Privacy()

@@ -35,4 +35,14 @@ public class LogRepository : ILogRepository
     {
         return LogList;
     }
+
+    public List<Log> GetAllFiltered(Filters filters)
+    {
+        if (filters.StartDate != null && filters.EndDate != null)
+        {
+            return LogList.Where(x => x.TimeStamp >= filters.StartDate && x.TimeStamp <= filters.EndDate).ToList();
+        }
+
+        return LogList;
+    }
 }

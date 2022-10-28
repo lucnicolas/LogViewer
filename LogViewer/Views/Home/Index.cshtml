@@ -1,20 +1,35 @@
 ﻿@model List<LogViewer.Models.Log>
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-  <table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Host</th>
-        <th scope="col">Message</th>
-    </tr>
-    </thead>
-    <tbody>
+    <form class="row g-3">
+        <div class="col-auto">
+            <label for="startDate" class="visually-hidden">Min. Date</label>
+            <input type="datetime-local" class="form-control" id="startDate" name="startDate">
+        </div>
+        <div class="col-auto">
+            <label for="endDate" class="visually-hidden">Max. Date</label>
+            <input type="datetime-local" class="form-control" id="endDate" name="endDate">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Filter</button>
+        </div>
+    </form>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Host</th>
+            <th scope="col">Message</th>
+        </tr>
+        </thead>
+        <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -25,6 +40,6 @@
                 <td>@item.Message</td>
             </tr>
         }
-    </tbody>
-  </table>
+        </tbody>
+    </table>
 </div>
